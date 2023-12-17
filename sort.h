@@ -7,6 +7,10 @@
 void print_array(const int *array, size_t size);
 void bubble_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
+void quick_sort(int *array, size_t size);
+void swap_a(int *a, int *b);
+int partition(int *array, int l, int h, size_t size);
+void quick_sorting(int *array, int l, int h, size_t size);
 
 /**
  * struct listint_s - Doubly linked list node
