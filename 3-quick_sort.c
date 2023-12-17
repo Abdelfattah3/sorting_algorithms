@@ -1,16 +1,20 @@
 #include "sort.h"
 /**
 * swap_a - swaps two elements
+* @array: array to be sorted
+* @size: the size of the array
 * @a: 1st element
 * @b: 2nd element
 */
-void swap_a(int *a, int *b)
+void swap_a(int *array, size_t size, int *a, int *b)
 {
-	int temp = 0;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	if (*a != *b)
+	{
+		*a = *a + *b;
+		*b = *a - *b;
+		*a = *a - *b;
+		print_array(array, size);
+	}
 }
 
 /**
@@ -57,17 +61,13 @@ int partition(int *array, int l, int h, size_t size)
 	int i, j;
 	int pivot = array[h];
 
-	i = l - 1;
-	for (j = l; j <= h - 1; j++)
+	for (i = j = l; j < h; j++)
 	{
-		if (array[j] <= pivot)
+		if (array[j] < pivot)
 		{
-			i++;
-			swap_a(&array[i], &array[j]);
-			print_array(array, size);
+			swap_a(array, size, &array[i++], &array[j]);
 		}
 	}
-	swap_a(&array[i + 1], &array[h]);
-	print_array(array, size);
-	return (i + 1);
+	swap_a(array, size, &array[i], &array[h]);
+	return (i);
 }
